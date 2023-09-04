@@ -6,24 +6,24 @@
 // Register definitions for the ATmega328P
 
 // Port definitions for the ATmega328P
-#define PORTB *((volatile unsigned char *)0x25)
-#define PORTC *((volatile unsigned char *)0x28)
-#define PORTD *((volatile unsigned char *)0x2B)
+#define PORTB *((volatile uint8_t *)0x25)
+#define PORTC *((volatile uint8_t *)0x28)
+#define PORTD *((volatile uint8_t *)0x2B)
 
 // Data Direction Registers
-#define DDRB *((volatile unsigned char *)0x24)
-#define DDRC *((volatile unsigned char *)0x27)
-#define DDRD *((volatile unsigned char *)0x2A)
+#define DDRB *((volatile uint8_t *)0x24)
+#define DDRC *((volatile uint8_t *)0x27)
+#define DDRD *((volatile uint8_t *)0x2A)
 
 // Pin Input Registers
-#define PINB *((volatile unsigned char *)0x23)
-#define PINC *((volatile unsigned char *)0x26)
-#define PIND *((volatile unsigned char *)0x29)
+#define PINB *((volatile uint8_t *)0x23)
+#define PINC *((volatile uint8_t *)0x26)
+#define PIND *((volatile uint8_t *)0x29)
 
 // ADC Registers
-#define ADMUX *((volatile unsigned char *)0x7C)
-#define ADCSRA *((volatile unsigned char *)0x7A)
-#define ADCL *((volatile unsigned char *)0x78)
+#define ADMUX *((volatile uint8_t *)0x7C)
+#define ADCSRA *((volatile uint8_t *)0x7A)
+#define ADCL *((volatile uint8_t *)0x78)
 
 // Bit definitions
 #define FIRST_BIT (1)
@@ -44,10 +44,10 @@
 #define OUTPUT 1
 
 // Function prototypes
-void Set_Pin_Mode(volatile unsigned char *dataDirectionRegister, unsigned char pin, unsigned char mode);
-void Digital_Write(volatile unsigned char *portRegister, unsigned char pin, unsigned char state);
-unsigned char Digital_Read(volatile unsigned char *portRegister, unsigned char pin);
+void Set_Pin_Mode(volatile uint8_t *dataDirectionRegister, uint8_t pin, uint8_t mode);
+void Digital_Write(volatile uint8_t *portRegister, uint8_t pin, uint8_t state);
+uint8_t Digital_Read(volatile uint8_t *portRegister, uint8_t pin);
 void ADC_Init();
-unsigned int ADC_Read(unsigned char channel);
+unsigned int ADC_Read(uint8_t channel);
 
 #endif // HARDWARE_H

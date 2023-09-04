@@ -1,6 +1,6 @@
 #include "../Inc/hardware.h"
 
-void Set_Pin_Mode(volatile unsigned char *dataDirectionRegister, unsigned char pin, unsigned char mode)
+void Set_Pin_Mode(volatile uint8_t *dataDirectionRegister, uint8_t pin, uint8_t mode)
 {
     if (mode == OUTPUT)
     {
@@ -14,7 +14,7 @@ void Set_Pin_Mode(volatile unsigned char *dataDirectionRegister, unsigned char p
     }
 }
 
-void Digital_Write(volatile unsigned char *portRegister, unsigned char pin, unsigned char state)
+void Digital_Write(volatile uint8_t *portRegister, uint8_t pin, uint8_t state)
 {
     if (state == HIGH)
     {
@@ -28,7 +28,7 @@ void Digital_Write(volatile unsigned char *portRegister, unsigned char pin, unsi
     }
 }
 
-unsigned char Digital_Read(volatile unsigned char *portRegister, unsigned char pin)
+uint8_t Digital_Read(volatile uint8_t *portRegister, uint8_t pin)
 {
     // Read pin state
     return (*portRegister & (ONE << pin)) != ZERO;
@@ -42,7 +42,7 @@ void ADC_Init() {
     ADCSRA = (ONE << SEVENTH_BIT) | (ONE << SECOND_BIT) | (ONE << FIRST_BIT) | (ONE << ZERO);
 }
 
-unsigned int ADC_Read(unsigned char channel) {
+uint16_t ADC_Read(uint8_t channel) {
     // Clear the channel bits from the ADMUX register
     ADMUX &= 0xF0;
     // Set the new channel
