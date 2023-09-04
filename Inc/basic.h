@@ -13,6 +13,6 @@ typedef enum {
 } bool;
 
 // Function prototypes
-void delayMs(unsigned long ms);
+void Delay_Ms(unsigned long ms);
 
 #endif

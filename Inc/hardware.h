@@ -1,6 +1,8 @@
 #ifndef HARDWARE_H
 #define HARDWARE_H
 
+#include "basic.h"
+
 // Register definitions for the ATmega328P
 
 // Port definitions for the ATmega328P
@@ -17,6 +19,11 @@
 #define PINB *((volatile unsigned char *)0x23)
 #define PINC *((volatile unsigned char *)0x26)
 #define PIND *((volatile unsigned char *)0x29)
+
+// ADC Registers
+#define ADMUX *((volatile unsigned char *)0x7C)
+#define ADCSRA *((volatile unsigned char *)0x7A)
+#define ADCL *((volatile unsigned char *)0x78)
 
 // Bit definitions
 #define FIRST_BIT (1)
@@ -37,8 +44,10 @@
 #define OUTPUT 1
 
 // Function prototypes
-void setPinMode(volatile unsigned char *dataDirectionRegister, unsigned char pin, unsigned char mode);
-void digitalWrite(volatile unsigned char *portRegister, unsigned char pin, unsigned char state);
-unsigned char digitalRead(volatile unsigned char *portRegister, unsigned char pin);
+void Set_Pin_Mode(volatile unsigned char *dataDirectionRegister, unsigned char pin, unsigned char mode);
+void Digital_Write(volatile unsigned char *portRegister, unsigned char pin, unsigned char state);
+unsigned char Digital_Read(volatile unsigned char *portRegister, unsigned char pin);
+void ADC_Init();
+unsigned int ADC_Read(unsigned char channel);
 
 #endif // HARDWARE_H
