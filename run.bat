@@ -1,5 +1,7 @@
 : Build and deploy
 
+: Change directory to the project directory and the Arduino IDE directory
+
 set PATH=%PATH%;C:\Program Files (x86)\Arduino\hardware\tools\avr\bin
 
 avr-gcc.exe -mmcu=atmega328p -v "C:\Workspace\Personal\Embedded\Bare Metal\Projects\ATMEGA328P-AVR-GCC\Src\main.c" "C:\Workspace\Personal\Embedded\Bare Metal\Projects\ATMEGA328P-AVR-GCC\Src\hardware.c" "C:\Workspace\Personal\Embedded\Bare Metal\Projects\ATMEGA328P-AVR-GCC\Src\basic.c" -o "C:\Workspace\Personal\Embedded\Bare Metal\Projects\ATMEGA328P-AVR-GCC\Build\outputfile.o"
