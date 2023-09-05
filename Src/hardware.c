@@ -36,17 +36,18 @@ uint8_t Digital_Read(volatile uint8_t *portRegister, uint8_t pin)
 
 void ADC_Init() {
     // Set reference voltage (AVCC) and left-adjust result
-    ADMUX = (ONE << SIXTH_BIT) | (ONE << FIFTH_BIT);
+    ADMUX = (ONE << SIXTH_BIT) | (ONE << FIFTH_BIT); // 0110 0000
 
-    // Enable ADC and set prescaler (128)
-    ADCSRA = (ONE << SEVENTH_BIT) | (ONE << SECOND_BIT) | (ONE << FIRST_BIT) | (ONE << ZERO);
+    // Enable ADC and set prescaler (4)
+    ADCSRA = (ONE << SEVENTH_BIT) | (ONE << FIRST_BIT); // 1000 0100
 }
 
 uint16_t ADC_Read(uint8_t channel) {
     // Clear the channel bits from the ADMUX register
-    ADMUX &= 0xF0;
+    ADMUX &= 0xF0; //1111 0000 set to 0
+
     // Set the new channel
-    ADMUX |= (channel & 0x0F);
+    ADMUX |= (channel & 0x0F); // 0000 1111 set to 1
 
     // Start conversion
     ADCSRA |= (ONE << SIXTH_BIT);
@@ -54,6 +55,8 @@ uint16_t ADC_Read(uint8_t channel) {
     // Wait for conversion to complete
     while (ADCSRA & (ONE << SIXTH_BIT));
 
-    // Return ADC result
-    return ADCL;
+    // Return ADC result (combine ADCH and ADCL)
+    uint16_t result = ADCL;
+    result |= (uint16_t)(ADCH << 8);
+    return result;
 }

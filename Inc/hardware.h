@@ -24,8 +24,10 @@
 #define ADMUX *((volatile uint8_t *)0x7C)
 #define ADCSRA *((volatile uint8_t *)0x7A)
 #define ADCL *((volatile uint8_t *)0x78)
+#define ADCH *((volatile uint8_t *)0x79)
 
 // Bit definitions
+#define ZERO_BIT (0)
 #define FIRST_BIT (1)
 #define SECOND_BIT (2)
 #define THIRD_BIT (3)
